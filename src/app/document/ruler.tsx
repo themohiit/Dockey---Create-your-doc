@@ -40,6 +40,9 @@ const Marker = ({
 
 
 const Ruler = () => {
+    
+
+
     const [leftMargin , setLeftMargin] = useState(56);
     const [rightMargin,setRightMargin] = useState(56);
     const [isDraggingLeft, setIsDraggingLeft]= useState(false);
@@ -95,10 +98,10 @@ const Ruler = () => {
     ref={rulerRef}
     onMouseUp={handleMouseUp}
     onMouseLeave={handleMouseUp}
-    className="h-6 border-b border-gray-300 flex itmes-end relative select-none print:hidden">
+    className="w-[816px] mx-auto h-6 border-b border-gray-300 flex itmes-end relative select-none print:hidden">
        <div
        id="ruler-container"
-       className="max-w-[816px] mx-auto w-full h-full relative">
+       className=" w-full h-full relative">
         <Marker 
         position={leftMargin}
         isLeft={true}
