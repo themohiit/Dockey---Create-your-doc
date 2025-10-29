@@ -6,7 +6,6 @@ import { Navbar } from "./navbar";
 import { Room } from "./room";
 import Toolbar from "./toolbar";
 
-import { useState } from "react";
 interface Documentprops{
    preloadedDocument:Preloaded<typeof api.documents.getById>;
 }
