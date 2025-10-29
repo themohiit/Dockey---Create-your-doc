@@ -26,7 +26,7 @@ import {
     SearchIcon,
     SpellCheckIcon, UnderlineIcon,
     Undo2Icon,
-    Unlink2Icon,
+  
     UnlinkIcon,
     UploadIcon
 } from "lucide-react";
@@ -644,7 +644,7 @@ const Toolbar = () => {
                     icon: SpellCheckIcon,
                     onClick: () => {
                         const current = editor?.view.dom.getAttribute("spellcheck");
-                        console.log(current);
+                   
                         editor?.view.dom.setAttribute("spellcheck", current === "false" ? "true" : "false")
                     }
                 }
@@ -678,8 +678,8 @@ const Toolbar = () => {
                 {
                     label: "Comment",
                     icon: MessageSquarePlusIcon,
-                    onClick: () => console.log("Todo:Comment"),
-                    isActive: false,
+                    onClick: () => editor?.chain().focus().addPendingComment().run(),
+                    isActive: editor?.isActive("liveblocksCommentMark"),
                 },
                 {
                     label: "List Todo",

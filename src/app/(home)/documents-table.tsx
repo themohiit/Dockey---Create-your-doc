@@ -9,14 +9,10 @@ import {
 
  } from "@/components/ui/table"
  import { Doc } from "../../../convex/_generated/dataModel";
-import { Building2Icon, LoaderIcon } from "lucide-react";
+import {  LoaderIcon } from "lucide-react";
 import { DocumentRow } from "./document-row";
- interface DocumentTableProps{
-    documents:Doc<"documents">[] | undefined;
-    loadMore:(numItems:number)=> void;
-    status:PaginationStatus;
+import { Button } from "@/components/ui/button";
 
- };
 
 interface DocumentsTableProps{
     documents:Doc<"documents">[] | undefined;
@@ -72,8 +68,18 @@ interface DocumentsTableProps{
                     )}
                 </Table>
             )}
+            <div className="flex items-center justify-center">
+                <Button 
+                    variant="ghost"
+                    size="sm"
+                    onClick={()=>loadMore(5)}
+                    disabled={status!== "CanLoadMore"}
+                    >
+                        {status === "CanLoadMore" ? "Load more" : "End of results"}
+                    </Button>
+            </div>
 
         </div>
-    )
+    );
 
- }
+ };

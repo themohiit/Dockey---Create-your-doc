@@ -60,9 +60,9 @@ export const LineHeightExtension = Extension.create({
                 tr = tr.setSelection(selection);
 
                 const {from, to }= selection;
-                state.doc.nodeBetween(from,to,(node, pos)=>{
+                state.doc.nodesBetween(from,to,(node, pos)=>{
                     if(this.options.types.includes(node.type.name)){
-                        tr = tr.setNodeMarkuo(pos,undefined,{
+                        tr = tr.setNodeMarkup(pos,undefined,{
                             ...node.attrs,
                             lineHeight:this.options.defaultLineHeight
                         })
