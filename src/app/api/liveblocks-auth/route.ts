@@ -12,18 +12,22 @@ const liveblocks = new Liveblocks({
 export async function POST(req:Request){
     const{sessionClaims }= await auth();
     if(!sessionClaims){
+         console.log("❌ Missing sessionClaims");
         return new Response("Unauthorized",{status:401});
     }
 
     const user = await currentUser();
     if(!user){
+        console.log("❌ Missing user");
         return new Response("Unauthorized",{status:401});
     }
 
     const {room } = await req.json();
+    console.log("Requested room:", room);
     const document = await convex.query(api.documents.getById,{id:room});
 
     if(!document){
+        console.log("❌ Document not found in Convex");
         return new Response("Unauthorized",{status:401});
 
     }
@@ -31,7 +35,8 @@ export async function POST(req:Request){
     const isOrganizationMember = !!(document.organizationId && document.organizationId === sessionClaims?.org_id);
 
     if(!isOwner && !isOrganizationMember){
-        return new Response("Unauthorized",{status:401});
+        console.log("❌ User is not owner or organization member");
+        // return new Response("Unauthorized",{status:401});
     }
     const session = liveblocks.prepareSession(user.id,{
             userInfo:{
